@@ -1214,6 +1214,10 @@
                 <span class="options-title">Tutorial</span>
                 <span class="options-subtitle">Explora de nuevo las funciones principales de Drivy</span>
             </li>
+            <li class="options-item" onclick="clearPreferredData()">
+                <span class="options-title">Borrar mis datos</span>
+                <span class="options-subtitle">Borra las preferencias introducidas</span>
+            </li>
             <li class="options-item" onclick="toggleFullscreenModal('modalDeleteAds')">
                 <span class="options-title">Política de Privacidad</span>
                 <!-- No subtitle for Privacy Policy section -->
@@ -1230,7 +1234,7 @@
         </div>
         <div class="app-details">
             <div class="app-name">Drivy</div>
-            <div class="app-version">Version 1.3.1</div>
+            <div class="app-version">Version 1.3.2</div>
         </div>
     </div>
 </div>
@@ -3796,7 +3800,13 @@ function showStationInfo1(name, address, schedule, stationData, selectedFuelType
     `;
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 }
-
+function clearPreferredData() {
+    const keysToRemove = ["preferredBrands", "preferredFuelType", "fuelConsumption", "tankCapacity"];
+    
+    keysToRemove.forEach(key => localStorage.removeItem(key));
+    
+    console.log("Datos eliminados del localStorage.");
+}
 </script>
 </body>
 </html>
