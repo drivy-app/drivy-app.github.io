@@ -2393,34 +2393,39 @@ function displayRoutePreview(route, index) {
     : route.maxSeparationPoint || route.coordinates[Math.floor(route.coordinates.length / 2)]; // Punto de separación máxima o punto medio
 
   const popupContent = `
-    <div style="padding: 8px; min-width: 120px; text-align: center; 
-                background: ${isShortestRoute ? '#0087c7' : 'white'};
-                border-radius: 6px;">
-      <div style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 3px 0;">
-        <p onclick="selectAndConfirmRoute(${index})"
-           style="margin: 0; font-size: 14px; font-weight: ${isShortestRoute ? 'bold' : 'normal'}; 
-                  color: ${isShortestRoute ? 'white' : '#2c3e50'}; cursor: pointer;
-                  transition: opacity 0.2s;"
-           onmouseover="this.style.opacity='0.8'"
-           onmouseout="this.style.opacity='1'">
-          ${durationText}
-        </p>
-        <svg onclick="selectAndConfirmRoute(${index})" 
-             style="cursor: pointer; transition: transform 0.2s;" 
-             onmouseover="this.style.transform='scale(1.2)'" 
-             onmouseout="this.style.transform='scale(1)'"
-             width="20" height="20" viewBox="0 0 24 24" 
-             fill="none" 
-             stroke="${isShortestRoute ? 'white' : '#2c3e50'}" 
-             stroke-width="2" 
-             stroke-linecap="round" 
-             stroke-linejoin="round">
-          <path d="M5 12h14"/>
-          <path d="M12 5l7 7-7 7"/>
-        </svg>
-      </div>
+  <div style="padding: 8px; min-width: 120px; text-align: center; 
+              background: ${isShortestRoute ? '#0087c7' : 'white'};
+              border-radius: 6px;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+      <p onclick="selectAndConfirmRoute(${index})"
+         style="margin: 0; font-size: 14px; font-weight: ${isShortestRoute ? 'bold' : 'normal'}; 
+                color: ${isShortestRoute ? 'white' : '#2c3e50'}; cursor: pointer;
+                transition: opacity 0.2s;"
+         onmouseover="this.style.opacity='0.8'"
+         onmouseout="this.style.opacity='1'">
+        ${durationText}
+      </p>
+      <p onclick="selectAndConfirmRoute(${index})"
+         style="margin: 0; font-size: 12px; color: ${isShortestRoute ? 'white' : '#555'}; cursor: pointer;">
+        Seleccionar ruta
+      </p>
+      <svg onclick="selectAndConfirmRoute(${index})" 
+           style="cursor: pointer; transition: transform 0.2s;" 
+           onmouseover="this.style.transform='scale(1.2)'" 
+           onmouseout="this.style.transform='scale(1)'"
+           width="20" height="20" viewBox="0 0 24 24" 
+           fill="none" 
+           stroke="${isShortestRoute ? 'white' : '#2c3e50'}" 
+           stroke-width="2" 
+           stroke-linecap="round" 
+           stroke-linejoin="round">
+        <path d="M5 12h14"/>
+        <path d="M12 5l7 7-7 7"/>
+      </svg>
     </div>
-  `;
+  </div>
+`;
+
 
   // Crear y añadir la polilínea al mapa
   const polyline = L.polyline(route.coordinates, {
